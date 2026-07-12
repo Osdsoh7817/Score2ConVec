@@ -143,10 +143,10 @@ def render_song(ust, cv_spk, f0_spk, out, tau):
     if dev.type == "cuda":
         _ = torch.randn(8, 8, device=dev) @ torch.randn(8, 8, device=dev); torch.cuda.synchronize()
     cvm = ScoreToCV(yaml.safe_load(open(ROOT / "configs/model_cv_final.yaml", encoding="utf-8"))).to(dev).float().eval()
-    cvm.load_state_dict(torch.load(ROOT / "runs/cvfinal/checkpoints/cv_final.pt", map_location=dev, weights_only=False)["model"])
-    # The learned f0 model is RETIRED and not shipped. If its checkpoint is present we render an extra
+    cvm.load_state_dict(torch.load(ROOT / "checkpoints/cv_final.pt", map_location=dev, weights_only=False)["model"])
+    # The learned f0 model is RETIRED and not shipped. If a checkpoint is present we render an extra
     # "autopitch" take; otherwise we render "noteonly" f0 (exact note pitch) = the recommended deployment f0.
-    f0m, f0_ckpt, f0_cfg = None, ROOT / "runs/f0single/checkpoints/step_10000.pt", ROOT / "runs/f0single/config.yaml"
+    f0m, f0_ckpt, f0_cfg = None, ROOT / "checkpoints/f0_single.pt", ROOT / "configs/model_f0_single.yaml"
     if f0_ckpt.exists() and f0_cfg.exists():
         from src.model.score2f0 import ScoreToF0
         f0m = ScoreToF0(yaml.safe_load(open(f0_cfg, encoding="utf-8"))).to(dev).float().eval()

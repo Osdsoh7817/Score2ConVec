@@ -1,6 +1,6 @@
 """Validate the 256-d ScoreToCV (sovits4.0 retarget): render 銀の龍 through the MinamiyaAkiko 4.0 model.
 cv = ScoreToCV(model_cv256) [256-d], f0 = noteonly (exact notes), decode = synth_sovits via render_derisk.render_cv.
-  py -3.10 scripts/render_akiko.py --ckpt runs/cv256/checkpoints/step_30000.pt
+  python scripts/render_akiko.py --ust your_song.ust --model your_sovits40.pth --config config.json
 """
 import sys, os, argparse
 from pathlib import Path
@@ -15,7 +15,7 @@ from src.model.score2cv import ScoreToCV
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--ust", default=os.environ.get("S2CV_UST", ""), help="path to a .ust score")
-ap.add_argument("--ckpt", default="runs/cv256/checkpoints/cv256_final.pt", help="256-d ScoreToCV checkpoint")
+ap.add_argument("--ckpt", default="checkpoints/cv256_final.pt", help="256-d ScoreToCV checkpoint")
 ap.add_argument("--model", default=os.environ.get("SOVITS40_MODEL", ""), help="so-vits-svc 4.0 .pth (vec256l9, ssl_dim=256)")
 ap.add_argument("--config", default=os.environ.get("SOVITS40_CONFIG", ""), help="the 4.0 model's config.json")
 ap.add_argument("--out", default="processed/akiko_out", help="output dir (relative to repo root)")
