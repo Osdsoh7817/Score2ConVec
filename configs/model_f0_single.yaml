@@ -1,0 +1,62 @@
+# Single-singer F0 model (S58 fix) — ScoreToF0 (det+FM-residual) trained on ONE ACE singer (spk 29).
+# WHY: f0 is NOT speaker-invariant (unlike ContentVec/cv) — multi-singer f0 = one-to-many across singers
+# (det_loss stuck ~1). SynthV voicebanks / DiffSinger models are single-singer for exactly this reason.
+# Single-singer ⇒ the f0 conditional is consistent ⇒ learnable. cv stays multi-singer (cv ⊥ f0, ContentVec ok).
+conditioning_dropout:
+  lang: 0.0
+  speaker: 0.0
+encoder:
+  conv_kernel: 31
+  dim: 256
+  drop_path: 0.1
+  dropout: 0.1
+  ff_mult: 4
+  num_heads: 4
+  num_layers: 3
+  type: conformer
+f0_fm:
+  cents_clip: 1200.0
+  cents_scale: 120.0
+  conv_kernel: 7
+  dim: 256
+  n_blocks: 4
+  n_heads: 4
+  residual_scale: 80.0
+  sample_steps: 20
+  tau: 1.0
+language:
+  embed_dim: 64
+  n_langs: 9
+length_regulator:
+  dur_features: true
+  pos_features: true
+  pos_scale_init: 3.0
+  sigma_min: 0.5
+  sigma_scale_init: 0.2
+  soft: true
+phoneme:
+  embed_dim: 256
+  padding_idx: 0
+  sp_id: 3
+  vocab_size: 210
+speaker:
+  embed_dim: 256
+  n_speakers: 77
+technique:
+  dim: 7
+training:
+  batch_size: 48
+  fp16: true
+  grad_clip: 0.5
+  learning_rate: 0.0002
+  max_frames: 1000
+  max_steps: 40000
+  num_workers: 2
+  persistent_workers: false
+  train_split: train_f0single.jsonl
+  val_split: val_f0single.jsonl
+  use_aug: false
+  use_speech: false
+  voicing_weight: 0.5
+  warmup_steps: 2000
+  weighted_sampling: false

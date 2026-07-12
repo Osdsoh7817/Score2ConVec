@@ -1,0 +1,71 @@
+# ScoreToCV 256-d (so-vits-svc 4.0 retarget) — vec256l9 ContentVec target.
+# IDENTICAL to model_cv_final.yaml except: cv_dim 256, 256-norm, npz_root -> npz256.
+# Same proven core/data/LR/lineup; the ONLY change is the cv target space (768->256).
+cv_dim: 256
+cv_norm_path: processed/contentvec256_norm.npz
+npz_root: processed/npz256
+conditioning_dropout:
+  lang: 0.2
+  speaker: 0.5
+decoder:
+  conv_kernel: 15
+  drop_path: 0.1
+  dropout: 0.15
+  ff_mult: 4
+  grad_checkpoint: false
+  num_heads: 8
+  num_layers: 1
+  use_conv: true
+encoder:
+  conv_kernel: 31
+  dim: 512
+  drop_path: 0.1
+  dropout: 0.15
+  ff_mult: 4
+  num_heads: 8
+  num_layers: 5
+  type: conformer
+language:
+  embed_dim: 64
+  n_langs: 9
+length_regulator:
+  dur_features: true
+  pos_features: true
+  pos_scale_init: 3.0
+  sigma_min: 0.5
+  sigma_scale_init: 0.2
+  soft: true
+phoneme:
+  embed_dim: 256
+  padding_idx: 0
+  sp_id: 3
+  vocab_size: 210
+speaker:
+  embed_dim: 256
+  n_speakers: 77
+technique:
+  dim: 7
+training:
+  batch_size: 48
+  fp16: true
+  grad_clip: 0.5
+  lang_weights:
+    zh: 1.0
+    en: 2.0
+    ja: 6.0
+    de: 3.0
+    es: 3.0
+    fr: 3.0
+    it: 5.0
+  learning_rate: 0.0002
+  max_frames: 1000
+  max_steps: 60000
+  num_workers: 2
+  persistent_workers: false
+  pos_aux_weight: 0.05
+  train_split: train_final.jsonl
+  val_split: val_final.jsonl
+  use_aug: false
+  use_speech: false
+  warmup_steps: 2000
+  weighted_sampling: true

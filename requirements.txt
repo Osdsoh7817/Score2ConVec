@@ -1,0 +1,20 @@
+# Score2ConVec — Python dependencies (Python 3.10 recommended)
+#
+# Install PyTorch matching your CUDA build first, from https://pytorch.org :
+#   e.g.  pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+# then:  pip install -r requirements.txt
+#
+# NOTE: the SVC *backend* (so-vits-svc 4.0 / 4.1 or RVC) is a SEPARATE install — it is not
+# a pip dependency of this repo. Point SOVITS_ROOT at your local so-vits-svc checkout. See README.
+
+torch>=2.0
+torchaudio>=2.0
+numpy>=1.23
+scipy>=1.9
+PyYAML>=6.0
+soundfile>=0.12
+librosa>=0.10
+transformers>=4.30      # ContentVec feature extraction (HubertModelWithFinalProj)
+mido>=1.2               # MIDI note parsing (extract_notes.py)
+pyworld>=0.3            # optional: WORLD f0 fallback in f0 extraction
+tqdm>=4.64

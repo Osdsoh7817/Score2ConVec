@@ -1,0 +1,53 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# ---- Model weights (hosted separately; see README) ----
+# ScoreToCV checkpoints and any SVC / pretrained weights are NOT committed.
+checkpoints/*
+!checkpoints/README.md
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.bin
+*.safetensors
+
+# ---- Data / features / runs (never commit) ----
+processed/
+datasets/
+runs/
+data/
+*.npz
+*.npy
+*.wav
+*.flac
+*.mp3
+*.TextGrid
+*.lab
+manifest*.jsonl
+*_final.jsonl
+
+# ---- Third-party pretrained encoders (download per README) ----
+pretrained/
+
+# ---- Logs / scratch ----
+*.log
+*.tmp
+.tmp*/
+scratch/
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
